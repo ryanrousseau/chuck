@@ -61,7 +61,9 @@ namespace Chuck.Windows
         /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
         private void IncludedTests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            (new TestDetails((_DetailsModel.IncludedTests.First(t => t.TestName == lbIncludedTests.SelectedItem.ToString())))).ShowDialog();
+            (new TestDetails(
+                (_DetailsModel.IncludedTests.First(t => t.TestName == lbIncludedTests.SelectedItem.ToString())),true) //: Readonly?
+                ).ShowDialog();
         }
 
         /// <summary>

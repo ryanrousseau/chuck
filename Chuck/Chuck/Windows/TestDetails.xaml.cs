@@ -13,9 +13,17 @@ namespace Chuck.Windows
             _CollapsedRunTest = new Thickness(40, 180, 0, 0),
             _ExpandedRunTest = new Thickness(40, 585, 0, 0);
 
-        public TestDetails(TestDetailsModel detailsModel)
+        public TestDetails(TestDetailsModel detailsModel, bool isReadOnly = false)
         {
             InitializeComponent();
+
+            if (isReadOnly)
+            {
+                btnAddTag.IsEnabled = false;
+                btnRunTest.IsEnabled = false;
+                rtbTestScript.IsReadOnly = true;
+                txtTestName.IsReadOnly = true;
+            }
             
             DataContext = new TestDetailsContext(detailsModel);
             Title = string.Format(Title, detailsModel.TestName);

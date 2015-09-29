@@ -8,6 +8,7 @@
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="47"/>
         <TextBox 
+            Name="txtTestName"
             HorizontalAlignment="Left" 
             Height="23" 
             Margin="67,27,0,0" 
@@ -20,6 +21,7 @@
         <Label Content="Tags" HorizontalAlignment="Left" Margin="20,55,0,0" VerticalAlignment="Top" Width="47"/>
 
         <Button 
+            Name="btnAddTag"
             Content="+" 
             ToolTip="Add Tag"
             HorizontalAlignment="Left" 
@@ -59,10 +61,11 @@
             >
             <Grid Background="#FFE5E5E5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="69*"/>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="267*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <RichTextBox 
+                    Name="rtbTestScript"
                     HorizontalAlignment="Left" 
                     Height="418" 
                     VerticalAlignment="Top" 
