@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Test Details - {0}" 
         Height="256" 
-        Width="600">
+        Width="600"
+        ResizeMode="NoResize">
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="47"/>
         <TextBox 

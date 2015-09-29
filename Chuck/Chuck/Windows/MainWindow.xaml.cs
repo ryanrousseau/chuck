@@ -30,8 +30,21 @@ namespace Chuck.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var t = new TestPlanDetails();
-            t.ShowDialog();
+            //var t = new TestPlanDetails();
+            //t.ShowDialog();
+            //: Will be removed, just using for testing
+            var tests = new List<TestDetailsModel>();
+
+            var tags = new List<string>();
+            tags.Add("fdasdsag");
+            tags.Add("dsaf");
+
+            tests.Add(new TestDetailsModel("Chuck Testa", "Chuck/ChuckTesta.cs", "insert scripty stuff here\n\tblahblah formats blah...",tags));
+            tests.Add(new TestDetailsModel("The Throne", "Chuck/Otherwis.cs", "insert scripty RAWR! stuff here\n\tblahblah formats blah...", tags));
+
+            var model = new TestPlanDetailsModel("Focus the rage", tests);
+            var dialog = new TestPlanDetails(model);
+            dialog.ShowDialog();
         }
     }
 }

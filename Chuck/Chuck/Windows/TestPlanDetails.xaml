@@ -1,7 +1,10 @@
 ﻿<Window x:Class="Chuck.Windows.TestPlanDetails"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TestPlanDetails" Height="466" Width="664">
+        Title="Test Plan - {0}" 
+        Height="431" 
+        Width="664"
+        ResizeMode="NoResize">
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Height="25" Margin="10,20,0,0" VerticalAlignment="Top" Width="50"/>
 
@@ -86,11 +89,12 @@
         	HorizontalAlignment="Left" 
         	Margin="40,360,0,0" 
         	VerticalAlignment="Top" 
+            Click="BtnRunTest_OnClick"
         	Width="83" 
         	Height="26" 
         	RenderTransformOrigin="0.723,0.615"/>
         <Expander Name="ExpResults" Header="Expander" HorizontalAlignment="Left" Margin="10,410,0,0" VerticalAlignment="Top" Height="265" Width="625" IsExpanded="True">
-            <RichTextBox Name="rtbTestResults" HorizontalAlignment="Left" Height="241" Width="623">
+            <RichTextBox Name="rtbTestResults" IsReadOnly="True" HorizontalAlignment="Left" Height="241" Width="623" Background="#FFECECEC">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="{Binding DetailsModel.TestPlanResults}"/>

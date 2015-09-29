@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using Chuck.Contexts;
 using Chuck.Models;
 
 namespace Chuck.Windows
@@ -8,22 +11,26 @@ namespace Chuck.Windows
     /// </summary>
     public partial class TestPlanDetails
     {
-        public TestPlanDetails()
-        {
-            InitializeComponent();
+        private TestPlanDetailsModel _DetailsModel;
 
-            ExpResults.Collapsed += ExpResults_Collapsed;
-            ExpResults.Expanded += ExpResults_Expanded;
-        }
-
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        /// <param name="detailsModel">The model we will use to make the datacontext.</param>
         public TestPlanDetails(TestPlanDetailsModel detailsModel)
         {
             InitializeComponent();
-            DataContext = detailsModel;
+            ExpResults.Collapsed += ExpResults_Collapsed;
+            ExpResults.Expanded += ExpResults_Expanded;
+            lbIncludedTests.MouseDoubleClick += IncludedTests_MouseDoubleClick;
+            Title = string.Format(Title, detailsModel.TestPlanName);
 
-            foreach (var test in detailsModel.IncludedTests)
+            _DetailsModel = detailsModel;
+            DataContext = new TestPlanDetailsContext(_DetailsModel);
+
+            foreach (var test in _DetailsModel.IncludedTests)
             {
-                //: Add tests to lbTests
+                lbIncludedTests.Items.Add(test.TestName);
             }
         }
 
@@ -34,7 +41,7 @@ namespace Chuck.Windows
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ExpResults_Collapsed(object sender, RoutedEventArgs e)
         {
-            Height = 466;
+            Height = 472;
         }
 
         /// <summary>
@@ -43,6 +50,26 @@ namespace Chuck.Windows
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ExpResults_Expanded(object sender, RoutedEventArgs e)
+        {
+            Height = 726;
+        }
+
+        /// <summary>
+        ///     Handles the MouseDoubleClick event of the IncludedTests control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
+        private void IncludedTests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            (new TestDetails((_DetailsModel.IncludedTests.First(t => t.TestName == lbIncludedTests.SelectedItem.ToString())))).ShowDialog();
+        }
+
+        /// <summary>
+        ///     Handles the OnClick event of the BtnRunTest control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void BtnRunTest_OnClick(object sender, RoutedEventArgs e)
         {
             Height = 726;
         }
