@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 using Chuck.Commands;
@@ -96,22 +99,20 @@ namespace Chuck.Contexts
         /// <summary>
         ///     Gets called when the user clicks run from TestDetails window
         /// </summary>
-        public void ExecuteTest()
+        public async void ExecuteTest()
         {
-            var scriptHost = new ScriptHost();
+            var testRunner = new TestRunner();
             
-            var script = string.Format(@"var Test = Require<F14N>()  
-    .Init<FluentAutomation.SeleniumWebDriver>()
-    .Bootstrap(""{0}"")
-    .Config(settings => {{
-        // Easy access to FluentAutomation.Settings values
-        settings.DefaultWaitUntilTimeout = TimeSpan.FromSeconds(1);
-    }});
+            TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            DetailsModel.Status = "Running";
+            DetailsModel.ScriptName = "Foo";
 
-Test.Run(""{1}"", I => {{
-{2}}});", "Chrome", DetailsModel.TestName, DetailsModel.ScriptText);
+            await Task.Run(() =>
+                {
+                    var passed = testRunner.Run(new Test { Name = DetailsModel.TestName, Script = DetailsModel.ScriptText });
+                });
 
-            scriptHost.Execute(script);
+            DetailsModel.Status = "";
         }
 
         /// <summary>

@@ -12,7 +12,7 @@ using ScriptCs.Hosting;
 
 namespace Chuck.Core
 {
-    public class ScriptHost
+    internal class ScriptHost
     {
         private ScriptServices CreateScriptServices(bool useLogging)
         {
@@ -28,7 +28,7 @@ namespace Chuck.Core
             return builder.Build();
         }
 
-        public void Execute(string script)
+        internal void Execute(string script)
         {
             var services = CreateScriptServices(true);
 
@@ -53,7 +53,6 @@ namespace Chuck.Core
                 }
             }
 
-            F14N.Results.Clear();
             scriptExecutor.Terminate();
         }
     }
