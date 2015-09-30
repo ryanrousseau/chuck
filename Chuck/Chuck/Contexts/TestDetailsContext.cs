@@ -41,7 +41,19 @@ namespace Chuck.Contexts
         public void ExecuteTest()
         {
             var scriptHost = new ScriptHost();
-            scriptHost.Execute(DetailsModel.ScriptText);
+            
+            var script = string.Format(@"var Test = Require<F14N>()  
+    .Init<FluentAutomation.SeleniumWebDriver>()
+    .Bootstrap(""{0}"")
+    .Config(settings => {{
+        // Easy access to FluentAutomation.Settings values
+        settings.DefaultWaitUntilTimeout = TimeSpan.FromSeconds(1);
+    }});
+
+Test.Run(""{1}"", I => {{
+{2}}});", "Chrome", DetailsModel.TestName, DetailsModel.ScriptText);
+
+            scriptHost.Execute(script);
         }
     }
 }

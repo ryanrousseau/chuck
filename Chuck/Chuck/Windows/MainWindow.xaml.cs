@@ -24,15 +24,7 @@ namespace Chuck.Windows
             list.Add("test");
             list.Add("chuck testa");
 
-            var t = new TestDetails(new TestDetailsModel("Super Awesome Test 1","Test", @"var Test = Require<F14N>()  
-    .Init<FluentAutomation.SeleniumWebDriver>()
-    .Bootstrap(""Chrome"")
-    .Config(settings => {
-        // Easy access to FluentAutomation.Settings values
-        settings.DefaultWaitUntilTimeout = TimeSpan.FromSeconds(1);
-    });
-
-Test.Run(""KnockoutJS Cart Editor"", I => {  
+            var t = new TestDetails(new TestDetailsModel("Super Awesome Test 1","Test", @"
     I.Open(""http://knockoutjs.com/examples/cartEditor.html"");
     I.Select(""Motorcycles"").From("".liveExample tr select:eq(0)""); // Select by value/text
     I.Select(2).From("".liveExample tr select:eq(1)""); // Select by index
@@ -54,7 +46,6 @@ Test.Run(""KnockoutJS Cart Editor"", I => {
 
     // validate new total
     I.WaitUntil(() => I.Expect.Text(""$788.64"").In(""p.grandTotal span""));
-});
 
 ", list));
             t.ShowDialog();
