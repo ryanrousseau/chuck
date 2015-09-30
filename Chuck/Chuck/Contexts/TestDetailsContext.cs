@@ -40,7 +40,6 @@ namespace Chuck.Contexts
         /// </summary>
         public void ExecuteTest()
         {
-            MessageBox.Show("hi");
             var scriptHost = new ScriptHost();
             scriptHost.Execute(DetailsModel.ScriptText);
         }
