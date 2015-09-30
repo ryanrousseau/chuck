@@ -4,7 +4,8 @@
         Title="Test Details - {0}" 
         Height="256" 
         Width="600"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        >
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="47"/>
         <TextBox 
@@ -25,7 +26,7 @@
             Content="+" 
             ToolTip="Add Tag"
             HorizontalAlignment="Left" 
-            Margin="518,101,0,0" 
+            Margin="518,100,0,0" 
             VerticalAlignment="Top" 
             Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black">
             <Button.Background>
@@ -92,6 +93,34 @@
             Width="83" 
             Height="26" 
             RenderTransformOrigin="0.723,0.615"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="68" Margin="67,61,0,0" VerticalAlignment="Top" Width="443"/>
+        <Button 
+        	Content="-" 
+        	ToolTip="Remove Test"
+        	HorizontalAlignment="Left" 
+        	Margin="549,100,0,0" 
+        	VerticalAlignment="Top" 
+        	Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black" FontSize="20">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0.234"/>
+                    <GradientStop Color="#FFE6BB90" Offset="0.522"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.372"/>
+                    <GradientStop Color="#FFA82B06" Offset="1"/>
+                    <GradientStop Color="#FFDEDEDE" Offset="0.446"/>
+                    <GradientStop Color="#FFBD752D" Offset="0.669"/>
+                    <GradientStop Color="#FFD6280C" Offset="0.812"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="7"/>
+                    <SkewTransform AngleX="8" CenterX="7"/>
+                    <RotateTransform CenterX="7"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.LayoutTransform>
+        </Button>
 
 
     </Grid>

@@ -2,7 +2,11 @@
 using System.Windows;
 using Chuck.Contexts;
 using Chuck.Models;
-using System.IO;
+using System.Linq;
+using Chuck.Core.Git;
+using Chuck.Core.Git.Github;
+using Chuck.Helpers;
+using LibGit2Sharp;
 
 namespace Chuck.Windows
 {
@@ -15,10 +19,6 @@ namespace Chuck.Windows
         {
             InitializeComponent();
             DataContext = new MainWindowContext();
-
-            //: Initial create items, e.g., folder structure?
-            if (!Directory.Exists(Directory.GetCurrentDirectory() + @"\Projects"))
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + @"\Projects");
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -80,7 +80,45 @@ namespace Chuck.Windows
 
         private void rectSync_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var repo = "https://github.com/Theta-Z/ChuckScriptsTest";
+
+        }
+
+        private void Saf_OnClick(object sender, RoutedEventArgs e)
+        {
+            var credentials = GitHelper.GetGitCredentials();
+
+            var ri = new RepositoryInfo
+            {
+                Name = "ChuckTesta",
+                ProjectName = "ChuckTestaScripts"
+            };
+
+            var gh = new Github(ri);
+
+            //: gh->Add() 
+            //: Status: Working!
+            foreach (var entry in gh.Status())
+            {
+                gh.Add(entry.Key);
+            }
+
+            //: gh->Commit() 
+            if(gh.Status().Any(t => t.Value != FileStatus.Staged))
+                gh.Commit();
+
+            //: gh->Pull() 
+            //: Status: Working!
+            gh.Pull(credentials);
+
+            //: gh->Push() 
+            //: Status: Working!
+            var result = gh.Push(credentials);
+            if (result != string.Empty && result.Contains("401"))
+            {
+                //:not the best way to handle this.
+                GitHelper.NotifyBadCredentials();
+                GitHelper.GetGitCredentials(true);
+            }
         }
     }
 }

@@ -38,6 +38,8 @@
                 <ImageBrush ImageSource="/Images/Settings.png" Stretch="Fill"/>
             </Button.Foreground>
         </Button>
+        <Button Name="saf" Content="Test Git" HorizontalAlignment="Left" Height="35" Margin="496,510,0,0" VerticalAlignment="Top" Width="144"
+        	Click="Saf_OnClick" />
 
 
 
