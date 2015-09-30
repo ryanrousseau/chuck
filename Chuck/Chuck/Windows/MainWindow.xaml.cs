@@ -3,6 +3,7 @@ using System.Windows;
 using Chuck.Contexts;
 using Chuck.Models;
 using System.Linq;
+using System.Windows.Input;
 using Chuck.Core.Git;
 using Chuck.Core.Git.Github;
 using Chuck.Helpers;
@@ -12,6 +13,7 @@ namespace Chuck.Windows
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
+    ///     Icons used on this page: https://www.iconfinder.com/iconsets/technology-and-hardware-2
     /// </summary>
     public partial class MainWindow
     {
@@ -73,12 +75,13 @@ namespace Chuck.Windows
             dialog.ShowDialog();
         }
 
-        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        private void Settings_Click(object sender, MouseButtonEventArgs e)
         {
-            (new Settings()).ShowDialog();
+            var settings = new Settings();
+            settings.ShowDialog();
         }
 
-        private void rectSync_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Sync_Click(object sender, MouseButtonEventArgs e)
         {
 
         }

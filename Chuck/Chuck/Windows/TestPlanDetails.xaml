@@ -13,7 +13,7 @@
             Height="25" 
             Margin="75,20,0,0" 
             TextWrapping="Wrap" 
-            Text="{Binding DetailsModel.TestPlanName}" 
+            Text="{Binding TestPlanName}" 
             VerticalAlignment="Top" 
             Width="540"/>
 
@@ -97,7 +97,7 @@
             <RichTextBox Name="rtbTestResults" IsReadOnly="True" HorizontalAlignment="Left" Height="241" Width="623" Background="#FFECECEC">
                 <FlowDocument>
                     <Paragraph>
-                        <Run Text="{Binding DetailsModel.TestPlanResults}"/>
+                        <Run Text="{Binding TestPlanResults}"/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>

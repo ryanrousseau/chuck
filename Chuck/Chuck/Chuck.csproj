@@ -67,6 +67,7 @@
     <Compile Include="Contexts\TestDetailsContext.cs" />
     <Compile Include="Contexts\TestPlanDetailsContext.cs" />
     <Compile Include="Helpers\GitHelper.cs" />
+    <Compile Include="Models\ProjectsModel.cs" />
     <Compile Include="Models\TestDetailsModel.cs" />
     <Compile Include="Models\TestPlanDetailsModel.cs" />
     <Compile Include="Windows\GitCredentials.xaml.cs">
@@ -149,8 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Settings.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Sync.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

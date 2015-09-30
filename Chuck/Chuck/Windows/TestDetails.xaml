@@ -7,14 +7,14 @@
         ResizeMode="NoResize"
         >
     <Grid>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="47"/>
+        <Label Name="lblName" Content="Name" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="47"/>
         <TextBox 
             Name="txtTestName"
             HorizontalAlignment="Left" 
             Height="23" 
             Margin="67,27,0,0" 
             TextWrapping="Wrap" 
-            Text="{Binding DetailsModel.ScriptName}"
+            Text="{Binding ScriptName}"
             VerticalAlignment="Top" 
             Width="311"/>
 
@@ -76,7 +76,7 @@
                     >
                     <FlowDocument>
                         <Paragraph>
-                            <Run Text="{Binding DetailsModel.ScriptText}"/>
+                            <Run Text="{Binding ScriptText}"/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>

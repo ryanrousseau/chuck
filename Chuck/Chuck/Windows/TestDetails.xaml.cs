@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using Chuck.Contexts;
 using Chuck.Models;
 
@@ -13,6 +14,8 @@ namespace Chuck.Windows
             _CollapsedRunTest = new Thickness(40, 180, 0, 0),
             _ExpandedRunTest = new Thickness(40, 585, 0, 0);
 
+        private ObservableCollection<TestDetailsContext> _TestDetails = new ObservableCollection<TestDetailsContext>(); 
+
         public TestDetails(TestDetailsModel detailsModel, bool isReadOnly = false)
         {
             InitializeComponent();
@@ -24,8 +27,10 @@ namespace Chuck.Windows
                 rtbTestScript.IsReadOnly = true;
                 txtTestName.IsReadOnly = true;
             }
-            
-            DataContext = new TestDetailsContext(detailsModel);
+
+            _TestDetails.Add(new TestDetailsContext(detailsModel));
+            DataContext = _TestDetails;
+
             Title = string.Format(Title, detailsModel.TestName);
 
             foreach (var tag in detailsModel.Tags)

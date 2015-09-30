@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Chuck.Contexts;
@@ -12,6 +13,7 @@ namespace Chuck.Windows
     public partial class TestPlanDetails
     {
         private TestPlanDetailsModel _DetailsModel;
+        private ObservableCollection<TestPlanDetailsContext> _TestPlanDetails = new ObservableCollection<TestPlanDetailsContext>(); 
 
         /// <summary>
         ///     Constructor
@@ -26,7 +28,8 @@ namespace Chuck.Windows
             Title = string.Format(Title, detailsModel.TestPlanName);
 
             _DetailsModel = detailsModel;
-            DataContext = new TestPlanDetailsContext(_DetailsModel);
+            _TestPlanDetails.Add(new TestPlanDetailsContext(_DetailsModel));
+            DataContext = _TestPlanDetails;
 
             foreach (var test in _DetailsModel.IncludedTests)
             {
