@@ -1,12 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 using Chuck.Commands;
 using Chuck.Core;
 using Chuck.Models;
+using ICSharpCode.AvalonEdit.Document;
 
 namespace Chuck.Contexts
 {
@@ -35,15 +34,15 @@ namespace Chuck.Contexts
             }
         }
 
-        public string ScriptText
+        public TextDocument Script
         {
-            get { return DetailsModel.ScriptText; }
+            get { return DetailsModel.Script; }
             set
             {
-                if (DetailsModel.ScriptText != value)
+                if (DetailsModel.Script != value)
                 {
-                    DetailsModel.ScriptText = value;
-                    OnPropertyChanged("ScriptText");
+                    DetailsModel.Script = value;
+                    OnPropertyChanged("Script");
                 }
             }
         }
@@ -109,7 +108,7 @@ namespace Chuck.Contexts
 
             await Task.Run(() =>
                 {
-                    var passed = testRunner.Run(new Test { Name = DetailsModel.TestName, Script = DetailsModel.ScriptText });
+                    var passed = testRunner.Run(new Test { Name = DetailsModel.TestName, Script = DetailsModel.Script.Text });
                 });
 
             DetailsModel.Status = "";

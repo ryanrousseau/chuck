@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using ICSharpCode.AvalonEdit.Document;
 
 namespace Chuck.Models
 {
     public class TestDetailsModel
     {
         public string ScriptName { get; set; }
-        public string ScriptText { get; set; }
+        public TextDocument Script { get; set; }
         public string Status { get; set; }
         public ICollection<string> Tags { get; set; }
         public string TestName { get; set; }
@@ -13,7 +14,7 @@ namespace Chuck.Models
         public TestDetailsModel(string testName, string scriptName, string scriptText, ICollection<string> tags)
         {
             ScriptName = scriptName;
-            ScriptText = scriptText;
+            Script = new TextDocument {Text = scriptText};
             Tags = tags;
             TestName = testName;
             Status = "Idle";

@@ -70,6 +70,7 @@
                     Name="scriptEditor"
                     xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                     FontFamily="Consolas"
+                    Document="{Binding Script}"
                     SyntaxHighlighting="C#"
                     FontSize="8pt"
                     >

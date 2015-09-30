@@ -155,6 +155,9 @@
     <Resource Include="Images\Settings.png" />
     <Resource Include="Images\Sync.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
