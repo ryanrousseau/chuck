@@ -2,6 +2,7 @@
 using System.Windows;
 using Chuck.Contexts;
 using Chuck.Models;
+using System.IO;
 
 namespace Chuck.Windows
 {
@@ -16,6 +17,8 @@ namespace Chuck.Windows
             DataContext = new MainWindowContext();
 
             //: Initial create items, e.g., folder structure?
+            if (!Directory.Exists(Directory.GetCurrentDirectory() + @"\Projects"))
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + @"\Projects");
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -68,6 +71,21 @@ namespace Chuck.Windows
             var model = new TestPlanDetailsModel("Focus the rage", tests);
             var dialog = new TestPlanDetails(model);
             dialog.ShowDialog();
+        }
+
+        private void Rectangle_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            (new Settings()).ShowDialog();
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rectSync_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var repo = "https://github.com/Theta-Z/ChuckScriptsTest";
         }
     }
 }

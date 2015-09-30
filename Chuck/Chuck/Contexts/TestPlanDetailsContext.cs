@@ -7,7 +7,9 @@ namespace Chuck.Contexts
 {
     public class TestPlanDetailsContext
     {
-        private ICommand _RunTestPlan;
+        private ICommand
+            _RunTestPlan,
+            _SaveTestPlan;
 
         /// <summary>
         ///     Command that will call ExecuteTestPlan
@@ -15,6 +17,14 @@ namespace Chuck.Contexts
         public ICommand RunTestPlan
         {
             get { return _RunTestPlan ?? (_RunTestPlan = new RelayedCommand(p => ExecuteTestPlan(), t => true)); }
+        }
+
+        /// <summary>
+        ///     Command that will call ExecuteTestPlan
+        /// </summary>
+        public ICommand SaveTestPlan
+        {
+            get { return _SaveTestPlan ?? (_SaveTestPlan = new RelayedCommand(p => SaveTestPlanToFile(), t => true)); }
         }
 
         /// <summary>
@@ -37,6 +47,14 @@ namespace Chuck.Contexts
         private void ExecuteTestPlan()
         {
             MessageBox.Show("hi");
+        }
+
+        /// <summary>
+        ///     Save the testplan to file with JSON
+        /// </summary>
+        private void SaveTestPlanToFile()
+        {
+
         }
     }
 }
