@@ -73,14 +73,9 @@ namespace Chuck.Windows
             dialog.ShowDialog();
         }
 
-        private void Rectangle_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            (new Settings()).ShowDialog();
-        }
-
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-
+            (new Settings()).ShowDialog();
         }
 
         private void rectSync_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
