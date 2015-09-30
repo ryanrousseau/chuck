@@ -6,6 +6,7 @@ namespace Chuck.Models
     {
         public string ScriptName { get; set; }
         public string ScriptText { get; set; }
+        public string Status { get; set; }
         public ICollection<string> Tags { get; set; }
         public string TestName { get; set; }
 
@@ -15,6 +16,7 @@ namespace Chuck.Models
             ScriptText = scriptText;
             Tags = tags;
             TestName = testName;
+            Status = "Idle";
         }
     }
 }

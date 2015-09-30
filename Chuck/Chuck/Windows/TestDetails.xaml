@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Test Details - {0}" 
-        Height="256" 
+        Height="665" 
         Width="600"
         ResizeMode="NoResize"
         >
@@ -59,6 +59,7 @@
             VerticalAlignment="Top" 
             Height="441" 
             Width="540"
+            IsExpanded="True"
             >
             <Grid Background="#FFE5E5E5">
                 <Grid.ColumnDefinitions>
@@ -88,7 +89,7 @@
             Content="Run Test" 
             Command="{Binding Path=RunTest}"
             HorizontalAlignment="Left" 
-            Margin="40,180,0,0" 
+            Margin="20, 585, 0, 0" 
             VerticalAlignment="Top" 
             Width="83" 
             Height="26" 
@@ -121,6 +122,7 @@
                 </TransformGroup>
             </Button.LayoutTransform>
         </Button>
+        <Label Name="Status" HorizontalAlignment="Left" Margin="122,585,0,0" VerticalAlignment="Top" Content="{Binding DetailsModel.Status}"/>
 
 
     </Grid>
