@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Chuck.Commands;
+using Chuck.Core;
 using Chuck.Models;
 
 namespace Chuck.Contexts
@@ -40,6 +41,8 @@ namespace Chuck.Contexts
         public void ExecuteTest()
         {
             MessageBox.Show("hi");
+            var scriptHost = new ScriptHost();
+            scriptHost.Execute(DetailsModel.ScriptText);
         }
     }
 }
