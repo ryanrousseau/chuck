@@ -16,6 +16,7 @@
             TextWrapping="Wrap" 
             Text="{Binding ScriptName}"
             VerticalAlignment="Top" 
+            IsEnabled="{Binding Enabled}"
             Width="311"/>
 
 
@@ -23,6 +24,7 @@
 
         <Button 
             Name="btnAddTag"
+            IsEnabled="{Binding Enabled}"
             Content="+" 
             ToolTip="Add Tag"
             HorizontalAlignment="Left" 
@@ -72,6 +74,7 @@
                     FontFamily="Consolas"
                     Document="{Binding Script}"
                     SyntaxHighlighting="C#"
+                    IsEnabled="{Binding Enabled}"
                     FontSize="8pt"
                     >
                 </avalonEdit:TextEditor>
@@ -87,6 +90,7 @@
             VerticalAlignment="Top" 
             Width="83" 
             Height="26" 
+            IsEnabled="{Binding Enabled}"
             RenderTransformOrigin="0.723,0.615"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="68" Margin="67,61,0,0" VerticalAlignment="Top" Width="443"/>
         <Button 
@@ -94,6 +98,7 @@
         	ToolTip="Remove Test"
         	HorizontalAlignment="Left" 
         	Margin="549,100,0,0" 
+            IsEnabled="{Binding Enabled}"
         	VerticalAlignment="Top" 
         	Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black" FontSize="20">
             <Button.Background>
@@ -116,7 +121,7 @@
                 </TransformGroup>
             </Button.LayoutTransform>
         </Button>
-        <Label Name="Status" HorizontalAlignment="Left" Margin="122,585,0,0" VerticalAlignment="Top" Content="{Binding DetailsModel.Status}"/>
+        <Label Name="Status" HorizontalAlignment="Left" Margin="122,585,0,0" VerticalAlignment="Top" Content="{Binding Status}"/>
 
 
     </Grid>

@@ -6,6 +6,7 @@ using Chuck.Commands;
 using Chuck.Core;
 using Chuck.Models;
 using ICSharpCode.AvalonEdit.Document;
+using System.Threading;
 
 namespace Chuck.Contexts
 {
@@ -20,6 +21,21 @@ namespace Chuck.Contexts
         ///     Required to update interface from datacontext
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool _Enabled = true;
+
+        public bool Enabled
+        {
+            get { return _Enabled; }
+            set
+            {
+                if (_Enabled != value)
+                {
+                    _Enabled = value;
+                    OnPropertyChanged("Enabled");
+                }
+            }
+        }
 
         public string ScriptName
         {
@@ -43,6 +59,19 @@ namespace Chuck.Contexts
                 {
                     DetailsModel.Script = value;
                     OnPropertyChanged("Script");
+                }
+            }
+        }
+
+        public string Status
+        {
+            get { return DetailsModel.Status; }
+            set
+            {
+                if (DetailsModel.Status != value)
+                {
+                    DetailsModel.Status = value;
+                    OnPropertyChanged("Status");
                 }
             }
         }
@@ -100,16 +129,24 @@ namespace Chuck.Contexts
         /// </summary>
         public async void ExecuteTest()
         {
-            var testRunner = new TestRunner();
+            Enabled = false;
             
             TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
-            DetailsModel.Status = "Running";
+            Status = "Running";
             DetailsModel.ScriptName = "Foo";
 
-            await Task.Run(() =>
+            var test = new Test { Name = DetailsModel.TestName, Script = DetailsModel.Script.Text };
+
+            await Task.Run(() => {
+                var testRunner = new TestRunner();
+                var passed = testRunner.Run(test);
+
+                Task.Factory.StartNew(() =>
                 {
-                    var passed = testRunner.Run(new Test { Name = DetailsModel.TestName, Script = DetailsModel.Script.Text });
-                });
+                    Status = passed ? "Passed" : "Failed";
+                    Enabled = true;
+                }, CancellationToken.None, TaskCreationOptions.None, uiScheduler);
+            });
 
             DetailsModel.Status = "";
         }
