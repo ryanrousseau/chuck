@@ -66,21 +66,14 @@
                     <ColumnDefinition Width="267*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <RichTextBox 
-                    Name="rtbTestScript"
-                    HorizontalAlignment="Left" 
-                    Height="418" 
-                    VerticalAlignment="Top" 
-                    Width="538" 
-                    Grid.ColumnSpan="2" 
-                    Background="#FFEAEAEA"
+                <avalonEdit:TextEditor 
+                    Name="scriptEditor"
+                    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                    FontFamily="Consolas"
+                    SyntaxHighlighting="C#"
+                    FontSize="8pt"
                     >
-                    <FlowDocument>
-                        <Paragraph>
-                            <Run Text="{Binding DetailsModel.ScriptText}"/>
-                        </Paragraph>
-                    </FlowDocument>
-                </RichTextBox>
+                </avalonEdit:TextEditor>
             </Grid>
         </Expander>
 

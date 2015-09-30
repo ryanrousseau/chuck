@@ -21,7 +21,7 @@ namespace Chuck.Windows
             {
                 btnAddTag.IsEnabled = false;
                 btnRunTest.IsEnabled = false;
-                rtbTestScript.IsReadOnly = true;
+                scriptEditor.IsReadOnly = true;
                 txtTestName.IsReadOnly = true;
             }
             
