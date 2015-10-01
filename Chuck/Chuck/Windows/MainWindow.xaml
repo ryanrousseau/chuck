@@ -2,11 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         ResizeMode="NoResize"
-        Title="Chuck Testa" Height="720" Width="609"
+        Title="Chuck Testa" Height="670" Width="609"
         >
     <Grid>
-        <Label Content="{Binding Flair}" HorizontalAlignment="Left" Margin="115,37,0,0" VerticalAlignment="Top" Width="187"/>
-
         <Rectangle 
             Name="rectSync"
             MouseLeftButtonDown="Sync_Click"
@@ -27,7 +25,7 @@
         	MouseLeftButtonDown="Settings_Click"
         	HorizontalAlignment="Left" 
         	Height="54" 
-        	Margin="536,566,0,0" 
+        	Margin="536,581,0,0" 
         	Stroke="White" 
         	VerticalAlignment="Top" 
         	Width="54" 
@@ -49,11 +47,11 @@
                 <DataGridTextColumn Binding="{Binding TestPlan}" Header="Test Plans" MinWidth="540"/>
             </DataGrid.Columns>
         </DataGrid>
-
+        <!-- Test Buttons
         <Button Name="saf" Content="Test Git" HorizontalAlignment="Left" Height="35" Margin="376,645,0,0" VerticalAlignment="Top" Width="144" Click="Saf_OnClick" />
         <Button Content="OpenTestDetailView" HorizontalAlignment="Left" Height="35" Margin="201,645,0,0" VerticalAlignment="Top" Width="144"
                Click="ButtonBase_OnClick" />
-        <Button Content="OpenTestPlanDetailView" HorizontalAlignment="Left" Height="35" Margin="31,645,0,0" VerticalAlignment="Top" Width="144" Click="Button_Click" />
+        <Button Content="OpenTestPlanDetailView" HorizontalAlignment="Left" Height="35" Margin="31,645,0,0" VerticalAlignment="Top" Width="144" Click="Button_Click" /> -->
 
         <!-- use storyboard to animate this later -->
         <Label Name="lblSync" Visibility="Hidden" Content="Syncing..." HorizontalAlignment="Left" Margin="359,11,0,0" VerticalAlignment="Top"/>
@@ -90,6 +88,62 @@
         	ToolTip="Remove Test"
         	HorizontalAlignment="Left" 
         	Margin="545,265,0,0" 
+        	IsEnabled="{Binding Enabled}"
+        	VerticalAlignment="Top" 
+        	Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black" FontSize="20">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0.234"/>
+                    <GradientStop Color="#FFE6BB90" Offset="0.522"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.372"/>
+                    <GradientStop Color="#FFA82B06" Offset="1"/>
+                    <GradientStop Color="#FFDEDEDE" Offset="0.446"/>
+                    <GradientStop Color="#FFBD752D" Offset="0.669"/>
+                    <GradientStop Color="#FFD6280C" Offset="0.812"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="7"/>
+                    <SkewTransform AngleX="8" CenterX="7"/>
+                    <RotateTransform CenterX="7"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.LayoutTransform>
+        </Button>
+        <Button 
+        	x:Name="btnAddTestPlan"
+        	IsEnabled="{Binding Enabled}"
+        	Content="+" 
+        	ToolTip="Add Test Plan"
+        	HorizontalAlignment="Left" 
+        	Margin="514,520,0,0" 
+        	VerticalAlignment="Top" 
+        	Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black" Click="btnAddTest_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0.234"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.427"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.372"/>
+                    <GradientStop Color="#FF29B65C" Offset="1"/>
+                    <GradientStop Color="#FFDEDEDE" Offset="0.372"/>
+                    <GradientStop Color="#FF9FD6B3" Offset="0.669"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="7"/>
+                    <SkewTransform AngleX="8" CenterX="7"/>
+                    <RotateTransform CenterX="7"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.LayoutTransform>
+        </Button>
+        <Button 
+        	Content="-" 
+        	ToolTip="Remove Test Plan"
+        	HorizontalAlignment="Left" 
+        	Margin="545,520,0,0" 
         	IsEnabled="{Binding Enabled}"
         	VerticalAlignment="Top" 
         	Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black" FontSize="20">

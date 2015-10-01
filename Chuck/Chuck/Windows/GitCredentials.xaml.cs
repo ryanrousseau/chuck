@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using Chuck.Core.Git;
+﻿using System.Windows;
 using LibGit2Sharp;
 
 namespace Chuck.Windows
@@ -10,8 +8,9 @@ namespace Chuck.Windows
     /// </summary>
     public partial class GitCredentials
     {
-        public RepositoryInfo RepoInfo { get; set; }
-
+        /// <summary>
+        ///     The Credentials that the user just entered.
+        /// </summary>
         public UsernamePasswordCredentials UserCredentials
         {
             get
@@ -24,6 +23,20 @@ namespace Chuck.Windows
             }
         }
 
+        /// <summary>
+        ///     Once this button is clicked, we have their credentials. Close window to allow caller to access credentials.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void btnSubmit_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        /// <summary>
+        ///     Create a new GitCredentials object
+        /// </summary>
+        /// <param name="previousLoginInfoIncorrect">Was the previous info incorrect? If so we can display an error label.</param>
         public GitCredentials(bool previousLoginInfoIncorrect = false)
         {
             InitializeComponent();
@@ -31,11 +44,6 @@ namespace Chuck.Windows
             lblPreviousFail.Visibility = previousLoginInfoIncorrect
                 ? Visibility.Visible
                 : Visibility.Hidden;
-        }
-
-        private void BtnSubmit_OnClick(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

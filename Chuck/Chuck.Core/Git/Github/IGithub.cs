@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using LibGit2Sharp;
 
 namespace Chuck.Core.Git.Github

@@ -3,8 +3,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Chuck.Contexts;
-using Chuck.Models;
 using Chuck.Core.Git;
+using Chuck.Models;
 
 namespace Chuck.Windows
 {

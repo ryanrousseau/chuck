@@ -7,6 +7,9 @@ using Chuck.Models;
 
 namespace Chuck.Contexts
 {
+    /// <summary>
+    ///     
+    /// </summary>
     public class TestPlanDetailsContext : INotifyPropertyChanged
     {
         private ICommand
@@ -18,6 +21,14 @@ namespace Chuck.Contexts
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        ///     The TestPlanDetailsModel associated with this context
+        /// </summary>
+        public TestPlanDetailsModel DetailsModel { get; set; }
+
+        /// <summary>
+        ///     Tests that are included in this testplan
+        /// </summary>
         public ICollection<TestDetailsModel> IncludedTests
         {
             get { return DetailsModel.IncludedTests; }
@@ -27,32 +38,6 @@ namespace Chuck.Contexts
                 {
                     DetailsModel.IncludedTests = value;
                     OnPropertyChanged("IncludedTests");
-                }
-            }
-        }
-
-        public string TestPlanName
-        {
-            get { return DetailsModel.TestPlanName; }
-            set
-            {
-                if (DetailsModel.TestPlanName != value)
-                {
-                    DetailsModel.TestPlanName = value;
-                    OnPropertyChanged("TestPlanName");
-                }
-            }
-        }
-
-        public string TestPlanResults
-        {
-            get { return DetailsModel.TestPlanResults; }
-            set
-            {
-                if (DetailsModel.TestPlanResults != value)
-                {
-                    DetailsModel.TestPlanResults = value;
-                    OnPropertyChanged("TestPlanResults");
                 }
             }
         }
@@ -74,9 +59,36 @@ namespace Chuck.Contexts
         }
 
         /// <summary>
-        ///     The TestPlanDetailsModel associated with this context
+        ///     Name of the testplan
         /// </summary>
-        public TestPlanDetailsModel DetailsModel { get; set; }
+        public string TestPlanName
+        {
+            get { return DetailsModel.TestPlanName; }
+            set
+            {
+                if (DetailsModel.TestPlanName != value)
+                {
+                    DetailsModel.TestPlanName = value;
+                    OnPropertyChanged("TestPlanName");
+                }
+            }
+        }
+        
+        /// <summary>
+        ///     Results from executing testplan
+        /// </summary>
+        public string TestPlanResults
+        {
+            get { return DetailsModel.TestPlanResults; }
+            set
+            {
+                if (DetailsModel.TestPlanResults != value)
+                {
+                    DetailsModel.TestPlanResults = value;
+                    OnPropertyChanged("TestPlanResults");
+                }
+            }
+        }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="TestPlanDetailsContext"/> class.
@@ -110,7 +122,7 @@ namespace Chuck.Contexts
         /// </summary>
         private void SaveTestPlanToFile()
         {
-
+            //: Soon...
         }    
     }
 }

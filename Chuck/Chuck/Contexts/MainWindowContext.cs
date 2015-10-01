@@ -1,6 +1,7 @@
-﻿using Chuck.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Chuck.Models;
+
 namespace Chuck.Contexts
 {
     /// <summary>
@@ -8,14 +9,17 @@ namespace Chuck.Contexts
     /// </summary>
     public class MainWindowContext : INotifyPropertyChanged
     {
+        private bool _Enabled;
+        private IList<TestDetailsModel> _Tests;
+
         /// <summary>
         ///     Required to update interface from datacontext
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Flair { get; set; }
-
-        private bool _Enabled { get; set; }
+        /// <summary>
+        ///     Control whether or not certain items on the form are enabled.
+        /// </summary>
         public bool Enabled
         {
             get { return _Enabled; }
@@ -29,7 +33,9 @@ namespace Chuck.Contexts
             }
         }
 
-        private IList<TestDetailsModel> _Tests;
+        /// <summary>
+        ///     A list of tests.
+        /// </summary>
         public IList<TestDetailsModel> Tests
         {
             get { return _Tests; }
@@ -43,9 +49,11 @@ namespace Chuck.Contexts
             }
         }
 
+        /// <summary>
+        ///     Create a new instance of MainWindowContext
+        /// </summary>
         public MainWindowContext()
         {
-            Flair = "Chuck Testa";
             _Tests = new List<TestDetailsModel>();
         }
 

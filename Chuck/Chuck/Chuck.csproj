@@ -164,9 +164,7 @@
     <Resource Include="Images\Settings.png" />
     <Resource Include="Images\Sync.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Save.png" />
   </ItemGroup>

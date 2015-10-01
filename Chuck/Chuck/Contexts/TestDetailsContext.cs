@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Chuck.Commands;
 using Chuck.Core;
 using Chuck.Models;
 using ICSharpCode.AvalonEdit.Document;
-using System.Threading;
 
 namespace Chuck.Contexts
 {
@@ -15,15 +15,17 @@ namespace Chuck.Contexts
     /// </summary>
     public class TestDetailsContext : INotifyPropertyChanged
     {
-        private ICommand _RunTest;
-
         /// <summary>
         ///     Required to update interface from datacontext
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         private bool _Enabled = true;
-
+        private ICommand _RunTest;
+        
+        /// <summary>
+        ///     Is the UI enabled currently?
+        /// </summary>
         public bool Enabled
         {
             get { return _Enabled; }
@@ -37,6 +39,17 @@ namespace Chuck.Contexts
             }
         }
 
+        /// <summary>
+        ///     Command that will call ExecuteTest
+        /// </summary>
+        public ICommand RunTest
+        {
+            get { return _RunTest ?? (_RunTest = new RelayedCommand(p => ExecuteTest(), t => true)); }
+        }
+
+        /// <summary>
+        ///     Name of the script
+        /// </summary>
         public string ScriptName
         {
             get { return DetailsModel.ScriptName; }
@@ -49,7 +62,10 @@ namespace Chuck.Contexts
                 }
             }
         }
-
+           
+        /// <summary>
+        ///     The editor, and therefore actual text, of the script.
+        /// </summary>
         public TextDocument Script
         {
             get { return DetailsModel.Script; }
@@ -63,6 +79,9 @@ namespace Chuck.Contexts
             }
         }
 
+        /// <summary>
+        ///     Current status of the test
+        /// </summary>
         public string Status
         {
             get { return DetailsModel.Status; }
@@ -76,6 +95,9 @@ namespace Chuck.Contexts
             }
         }
 
+        /// <summary>
+        ///     Tags associated with this test
+        /// </summary>
         public ICollection<string> Tags
         {
             get { return DetailsModel.Tags; }
@@ -89,6 +111,9 @@ namespace Chuck.Contexts
             }
         }
 
+        /// <summary>
+        ///     Name of this test
+        /// </summary>
         public string TestName
         {
             get { return DetailsModel.TestName; }
@@ -100,14 +125,6 @@ namespace Chuck.Contexts
                     OnPropertyChanged("TestName");
                 }
             }
-        }
-
-        /// <summary>
-        ///     Command that will call ExecuteTest
-        /// </summary>
-        public ICommand RunTest
-        {
-            get { return _RunTest ?? (_RunTest = new RelayedCommand(p => ExecuteTest(), t => true)); }
         }
 
         /// <summary>
@@ -131,7 +148,7 @@ namespace Chuck.Contexts
         {
             Enabled = false;
             
-            TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            var uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             Status = "Running";
             DetailsModel.ScriptName = "Foo";
 
@@ -148,7 +165,7 @@ namespace Chuck.Contexts
                 }, CancellationToken.None, TaskCreationOptions.None, uiScheduler);
             });
 
-            DetailsModel.Status = "";
+            DetailsModel.Status = string.Empty;
         }
 
         /// <summary>
