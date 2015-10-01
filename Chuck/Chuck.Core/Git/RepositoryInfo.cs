@@ -6,6 +6,10 @@ namespace Chuck.Core.Git
     {
         public Uri HttpsLink { get; set; }
         public string Name { get; set; }
-        public string ProjectName { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", Name, HttpsLink.OriginalString);
+        }
     }
 }

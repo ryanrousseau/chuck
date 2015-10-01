@@ -8,6 +8,8 @@ using Chuck.Core.Git;
 using Chuck.Core.Git.Github;
 using Chuck.Helpers;
 using LibGit2Sharp;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Chuck.Windows
 {
@@ -17,9 +19,13 @@ namespace Chuck.Windows
     /// </summary>
     public partial class MainWindow
     {
+        private IList<RepositoryInfo> _Repositories;
+
         public MainWindow()
         {
             InitializeComponent();
+            LoadRepositoryJSON();
+            LoadRepositories();
             DataContext = new MainWindowContext();
         }
 
@@ -75,10 +81,36 @@ namespace Chuck.Windows
             dialog.ShowDialog();
         }
 
+        private void LoadRepositoryJSON()
+        {
+            if(File.Exists("repos.JSON"))
+            {
+                _Repositories = JsonHelper<IList<RepositoryInfo>>.FromFile("repos.JSON");
+            }
+            
+            //: File doesnt exist, or file was empty
+            if(_Repositories == null)
+            {
+                _Repositories = new List<RepositoryInfo>();
+            }
+        }
+
+        private void LoadRepositories()
+        {
+            cbProjects.Items.Clear();
+            foreach(var repository in _Repositories)
+            {
+                cbProjects.Items.Add(repository);
+            }
+        }
+
         private void Settings_Click(object sender, MouseButtonEventArgs e)
         {
-            var settings = new Settings();
+            var settings = new Settings(_Repositories);
             settings.ShowDialog();
+            JsonHelper<IList<RepositoryInfo>>.SaveToFile(settings.Repositories, "repos.JSON");
+
+            LoadRepositories();
         }
 
         private void Sync_Click(object sender, MouseButtonEventArgs e)
@@ -93,7 +125,7 @@ namespace Chuck.Windows
             var ri = new RepositoryInfo
             {
                 Name = "ChuckTesta",
-                ProjectName = "ChuckTestaScripts"
+                HttpsLink = new System.Uri("test")
             };
 
             var gh = new Github(ri);

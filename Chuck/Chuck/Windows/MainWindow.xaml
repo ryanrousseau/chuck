@@ -6,11 +6,7 @@
         >
     <Grid>
         <Label Content="{Binding Flair}" HorizontalAlignment="Left" Margin="115,37,0,0" VerticalAlignment="Top" Width="187"/>
-        <Button Content="OpenTestDetailView" HorizontalAlignment="Left" Height="35" Margin="201,645,0,0" VerticalAlignment="Top" Width="144"
-               Click="ButtonBase_OnClick" />
-        <Button Content="OpenTestPlanDetailView" HorizontalAlignment="Left" Height="35" Margin="31,645,0,0" VerticalAlignment="Top" Width="144" Click="Button_Click" />
-        <Label Content="Loading..." HorizontalAlignment="Left" Height="60" Margin="225,355,0,0" VerticalAlignment="Top" Width="160" FontSize="36" Foreground="White"/>
-
+      
         <Rectangle 
             Name="rectSync"
             MouseLeftButtonDown="Sync_Click"
@@ -25,8 +21,7 @@
                 <ImageBrush ImageSource="/Images/Sync.png" Stretch="Fill"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Button Name="saf" Content="Test Git" HorizontalAlignment="Left" Height="35" Margin="376,645,0,0" VerticalAlignment="Top" Width="144"
-        	Click="Saf_OnClick" />
+        
         <Rectangle 
         	x:Name="rectSettings"
         	MouseLeftButtonDown="Settings_Click"
@@ -35,7 +30,8 @@
         	Margin="536,566,0,0" 
         	Stroke="White" 
         	VerticalAlignment="Top" 
-        	Width="54" RenderTransformOrigin="1.296,4.148">
+        	Width="54" 
+            RenderTransformOrigin="1.296,4.148">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Images/Settings.png" Stretch="Fill"/>
             </Rectangle.Fill>
@@ -54,6 +50,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-
+        <Button Name="saf" Content="Test Git" HorizontalAlignment="Left" Height="35" Margin="376,645,0,0" VerticalAlignment="Top" Width="144" Click="Saf_OnClick" />
+        <Button Content="OpenTestDetailView" HorizontalAlignment="Left" Height="35" Margin="201,645,0,0" VerticalAlignment="Top" Width="144"
+               Click="ButtonBase_OnClick" />
+        <Button Content="OpenTestPlanDetailView" HorizontalAlignment="Left" Height="35" Margin="31,645,0,0" VerticalAlignment="Top" Width="144" Click="Button_Click" />
     </Grid>
 </Window>

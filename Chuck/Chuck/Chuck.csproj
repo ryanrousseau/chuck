@@ -69,8 +69,9 @@
     <Compile Include="Contexts\MainWindowContext.cs" />
     <Compile Include="Contexts\TestDetailsContext.cs" />
     <Compile Include="Contexts\TestPlanDetailsContext.cs" />
+    <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\GitHelper.cs" />
-    <Compile Include="Models\ProjectsModel.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Models\TestDetailsModel.cs" />
     <Compile Include="Models\TestPlanDetailsModel.cs" />
     <Compile Include="Windows\GitCredentials.xaml.cs">

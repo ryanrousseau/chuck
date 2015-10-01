@@ -21,7 +21,7 @@ namespace Chuck.Core.Git.Github
         public Github(RepositoryInfo repositoryInfo)
         {
             _RepoInfo = repositoryInfo;
-            _LocalRepo = string.Format("Projects\\{0}", _RepoInfo.ProjectName);
+            _LocalRepo = string.Format("Projects\\{0}", _RepoInfo.Name);
         }
 
         /// <summary>
