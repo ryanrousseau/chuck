@@ -138,13 +138,17 @@ namespace Chuck.Windows
                 }
 
                 gh.Pull(credentials);
-                GitHelper.StageAll(gh);
-                gh.Commit();
-                var result = gh.Push(credentials);
-
-                if(result != string.Empty)
+                if (gh.Status().Count != 0)
                 {
-                    MessageBox.Show(result);
+                    GitHelper.StageAll(gh);
+                    if (gh.Status().Any(t => t.Value != FileStatus.Staged))
+                        gh.Commit();
+                    var result = gh.Push(credentials);
+
+                    if (result != string.Empty)
+                    {
+                        MessageBox.Show(result);
+                    }
                 }
             }
             else
