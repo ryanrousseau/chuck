@@ -10,7 +10,7 @@
         <Label Name="lblName" 
 Content="ScriptName" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="83"/>
         <TextBox 
-            Name="txtTestName"
+            Name="txtScriptName"
             HorizontalAlignment="Left" 
             Height="23" 
             Margin="103,27,0,0" 
@@ -97,7 +97,7 @@ Content="ScriptName" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlign
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="68" Margin="67,61,0,0" VerticalAlignment="Top" Width="443"/>
         <Button 
         	Content="-" 
-        	ToolTip="Remove Test"
+        	ToolTip="Remove Tag"
         	HorizontalAlignment="Left" 
         	Margin="549,100,0,0" 
             IsEnabled="{Binding Enabled}"

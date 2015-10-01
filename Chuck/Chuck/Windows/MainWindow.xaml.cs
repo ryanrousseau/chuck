@@ -237,7 +237,6 @@ namespace Chuck.Windows
         {
             dgTests.Items.Clear();
 
-
             if (cbProjects.SelectedItem != null)
             {
                 var projectName = ((RepositoryInfo)cbProjects.SelectedItem).Name;
@@ -247,6 +246,8 @@ namespace Chuck.Windows
                     MessageBox.Show("Hey buddy!\r\nI know we're rearin to get to work... But we need to sync first!\r\nIt's that nice button in the top right!", "Whoah!");
                     return;
                 }
+
+                ((MainWindowContext) DataContext).Enabled = true;
 
                 foreach (var folder in Directory.GetDirectories(projDirectory).Where(t => t.Substring(0, 1) != "."))
                 {
@@ -268,6 +269,20 @@ namespace Chuck.Windows
             if (dgTests.SelectedItem == null) return; //: Misclick?
 
             var t = new TestDetails((TestDetailsModel)dgTests.SelectedItem, (RepositoryInfo)cbProjects.SelectedItem);
+            t.ShowDialog();
+
+            LoadTests();
+        }
+
+        private void btnAddTest_Click(object sender, RoutedEventArgs e)
+        {
+            var inputDialog = new GetInput("Test Name");
+            inputDialog.ShowDialog();
+            var input = inputDialog.Input;
+            //:todo - add validation input was received
+
+            var tdm = new TestDetailsModel(input, "","", new List<string>());
+            var t = new TestDetails(tdm, (RepositoryInfo)cbProjects.SelectedItem);
             t.ShowDialog();
 
             LoadTests();

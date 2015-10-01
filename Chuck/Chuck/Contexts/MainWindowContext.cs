@@ -15,6 +15,20 @@ namespace Chuck.Contexts
 
         public string Flair { get; set; }
 
+        private bool _Enabled { get; set; }
+        public bool Enabled
+        {
+            get { return _Enabled; }
+            set
+            {
+                if (_Enabled != value)
+                {
+                    _Enabled = value;
+                    OnPropertyChanged("Enabled");
+                }
+            }
+        }
+
         private IList<TestDetailsModel> _Tests;
         public IList<TestDetailsModel> Tests
         {

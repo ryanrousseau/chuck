@@ -29,7 +29,7 @@ namespace Chuck.Windows
                 btnAddTag.IsEnabled = false;
                 btnRunTest.IsEnabled = false;
                 scriptEditor.IsReadOnly = true;
-                txtTestName.IsReadOnly = true;
+                txtScriptName.IsReadOnly = true;
             }
 
             _Repository = repository;
@@ -64,8 +64,8 @@ namespace Chuck.Windows
         {
             _TestDetails[0].DetailsModel.GetScriptTextFromAvalonDocument();
             IOHelper.CreateLocalDirectoryIfNotExists(string.Format("Projects\\{0}\\{1}", _Repository.Name, _TestName));
-            IOHelper.DeleteLocalFileIfExists(string.Format("Projects\\{0}\\{1}\\Main.Chuck", _Repository.Name, _TestName));
-            JsonHelper<TestDetailsModel>.SaveToFile(_TestDetails[0].DetailsModel, string.Format("Projects\\{0}\\{1}\\Main.Chuck", _Repository.Name, _TestName));
+            IOHelper.DeleteLocalFileIfExists(string.Format("Projects\\{0}\\{1}\\{2}.Chuck", _Repository.Name, _TestName, txtScriptName.Text));
+            JsonHelper<TestDetailsModel>.SaveToFile(_TestDetails[0].DetailsModel, string.Format("Projects\\{0}\\{1}\\{2}.Chuck", _Repository.Name, _TestName, txtScriptName.Text));
         }
     }
 }

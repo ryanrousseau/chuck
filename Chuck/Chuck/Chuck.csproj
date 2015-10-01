@@ -75,6 +75,9 @@
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Models\TestDetailsModel.cs" />
     <Compile Include="Models\TestPlanDetailsModel.cs" />
+    <Compile Include="Windows\GetInput.xaml.cs">
+      <DependentUpon>GetInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GitCredentials.xaml.cs">
       <DependentUpon>GitCredentials.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
     <Compile Include="Windows\TestPlanDetails.xaml.cs">
       <DependentUpon>TestPlanDetails.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\GetInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\GitCredentials.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
