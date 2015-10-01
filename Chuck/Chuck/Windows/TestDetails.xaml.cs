@@ -2,6 +2,8 @@
 using System.Windows;
 using Chuck.Contexts;
 using Chuck.Models;
+using Chuck.Helpers;
+using Chuck.Core.Git;
 
 namespace Chuck.Windows
 {
@@ -14,9 +16,11 @@ namespace Chuck.Windows
             _CollapsedRunTest = new Thickness(40, 180, 0, 0),
             _ExpandedRunTest = new Thickness(40, 585, 0, 0);
 
-        private ObservableCollection<TestDetailsContext> _TestDetails = new ObservableCollection<TestDetailsContext>(); 
+        private ObservableCollection<TestDetailsContext> _TestDetails = new ObservableCollection<TestDetailsContext>();
+        private RepositoryInfo _Repository;
+        private string _TestName;
 
-        public TestDetails(TestDetailsModel detailsModel, bool isReadOnly = false)
+        public TestDetails(TestDetailsModel detailsModel, RepositoryInfo repository, bool isReadOnly = false)
         {
             InitializeComponent();
 
@@ -28,6 +32,8 @@ namespace Chuck.Windows
                 txtTestName.IsReadOnly = true;
             }
 
+            _Repository = repository;
+            _TestName = detailsModel.TestName;
             _TestDetails.Add(new TestDetailsContext(detailsModel));
             DataContext = _TestDetails;
 
@@ -52,6 +58,14 @@ namespace Chuck.Windows
         {
             Height = 665;
             btnRunTest.Margin = _ExpandedRunTest;
+        }
+
+        private void rectSave_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _TestDetails[0].DetailsModel.GetScriptTextFromAvalonDocument();
+            IOHelper.CreateLocalDirectoryIfNotExists(string.Format("Projects\\{0}\\{1}", _Repository.Name, _TestName));
+            IOHelper.DeleteLocalFileIfExists(string.Format("Projects\\{0}\\{1}\\Main.Chuck", _Repository.Name, _TestName));
+            JsonHelper<TestDetailsModel>.SaveToFile(_TestDetails[0].DetailsModel, string.Format("Projects\\{0}\\{1}\\Main.Chuck", _Repository.Name, _TestName));
         }
     }
 }

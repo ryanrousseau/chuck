@@ -25,7 +25,7 @@ namespace Chuck.Helpers
         {
             using (var sw = new StreamWriter(filename))
             {
-                sw.Write(JsonConvert.SerializeObject(item));
+                sw.Write(JsonConvert.SerializeObject(item,new JsonSerializerSettings(){ ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
                 sw.Close();
             }
         }

@@ -13,7 +13,8 @@ namespace Chuck.Core.Git.Github
         ///     Add and stage specified file.
         /// </summary>
         /// <param name="fileName">Name of the file to be added to Lib2GitSharp, then staged ready for commit.</param>
-        void Add(string fileName);
+        /// <param name="status">The git status of the file.</param>
+        void Add(string fileName, FileStatus status);
 
         /// <summary>
         ///     Clone remote repo locally.

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using Chuck.Contexts;
 using Chuck.Models;
+using Chuck.Core.Git;
 
 namespace Chuck.Windows
 {
@@ -13,13 +14,14 @@ namespace Chuck.Windows
     public partial class TestPlanDetails
     {
         private TestPlanDetailsModel _DetailsModel;
-        private ObservableCollection<TestPlanDetailsContext> _TestPlanDetails = new ObservableCollection<TestPlanDetailsContext>(); 
+        private ObservableCollection<TestPlanDetailsContext> _TestPlanDetails = new ObservableCollection<TestPlanDetailsContext>();
+        private RepositoryInfo _Repository;
 
         /// <summary>
         ///     Constructor
         /// </summary>
         /// <param name="detailsModel">The model we will use to make the datacontext.</param>
-        public TestPlanDetails(TestPlanDetailsModel detailsModel)
+        public TestPlanDetails(TestPlanDetailsModel detailsModel, RepositoryInfo repository)
         {
             InitializeComponent();
             ExpResults.Collapsed += ExpResults_Collapsed;
@@ -30,6 +32,7 @@ namespace Chuck.Windows
             _DetailsModel = detailsModel;
             _TestPlanDetails.Add(new TestPlanDetailsContext(_DetailsModel));
             DataContext = _TestPlanDetails;
+            _Repository = repository;
 
             foreach (var test in _DetailsModel.IncludedTests)
             {
@@ -65,7 +68,7 @@ namespace Chuck.Windows
         private void IncludedTests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             (new TestDetails(
-                (_DetailsModel.IncludedTests.First(t => t.TestName == lbIncludedTests.SelectedItem.ToString())),true) //: Readonly?
+                (_DetailsModel.IncludedTests.First(t => t.TestName == lbIncludedTests.SelectedItem.ToString())), _Repository, true) //: Readonly?
                 ).ShowDialog();
         }
 

@@ -28,11 +28,14 @@ namespace Chuck.Core.Git.Github
         ///     Add and stage specified file.
         /// </summary>
         /// <param name="fileName">Name of the file to be added to Lib2GitSharp, then staged ready for commit.</param>
-        public void Add(string fileName)
+        public void Add(string fileName, FileStatus status)
         {
             using (var repo = new Repository(_LocalRepo))
             {
-                repo.Index.Add(fileName);
+                if (status != FileStatus.Removed && status != FileStatus.Missing)
+                {
+                    repo.Index.Add(fileName);
+                }
                 repo.Stage(fileName);
             }
         }

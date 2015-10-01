@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Chuck.Windows;
 using LibGit2Sharp;
+using Chuck.Core.Git.Github;
 
 namespace Chuck.Helpers
 {
@@ -12,6 +13,14 @@ namespace Chuck.Helpers
             gc.ShowDialog();
 
             return gc.UserCredentials;
+        }
+
+        public static void StageAll(Github hubimusMaximus)
+        {
+            foreach (var file in hubimusMaximus.Status())
+            {
+                hubimusMaximus.Add(file.Key, file.Value);
+            }
         }
 
         public static void NotifyBadCredentials()

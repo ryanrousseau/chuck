@@ -38,15 +38,15 @@
         </Rectangle>
 
         <Label Content="Projects" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="cbProjects"  HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" Width="205" Height="27"/>
-        <DataGrid HorizontalAlignment="Left" Margin="30,85,0,0" VerticalAlignment="Top" Height="175" Width="540">
+        <ComboBox Name="cbProjects" SelectionChanged="cbProjects_SelectionChanged" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" Width="250" Height="27"/>
+        <DataGrid Name="dgTests" HorizontalAlignment="Left" Margin="30,85,0,0" VerticalAlignment="Top" Height="175" Width="540" MouseDoubleClick="dgTests_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Tests" MinWidth="540"/>
+                <DataGridTextColumn Binding="{Binding TestDetail, Mode=OneWay}" Header="Tests" MinWidth="530"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid HorizontalAlignment="Left" Margin="30,340,0,0" VerticalAlignment="Top" Height="175" Width="540">
+        <DataGrid Name="dgTestPlans" HorizontalAlignment="Left" Margin="30,340,0,0" VerticalAlignment="Top" Height="175" Width="540">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Test Plans" MinWidth="540"/>
+                <DataGridTextColumn Binding="{Binding TestPlan}" Header="Test Plans" MinWidth="540"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -54,5 +54,8 @@
         <Button Content="OpenTestDetailView" HorizontalAlignment="Left" Height="35" Margin="201,645,0,0" VerticalAlignment="Top" Width="144"
                Click="ButtonBase_OnClick" />
         <Button Content="OpenTestPlanDetailView" HorizontalAlignment="Left" Height="35" Margin="31,645,0,0" VerticalAlignment="Top" Width="144" Click="Button_Click" />
+        
+        <!-- use storyboard to animate this later -->
+        <Label Name="lblSync" Visibility="Hidden" Content="Syncing..." HorizontalAlignment="Left" Margin="359,11,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

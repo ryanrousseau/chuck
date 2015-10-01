@@ -7,17 +7,18 @@
         ResizeMode="NoResize"
         >
     <Grid>
-        <Label Name="lblName" Content="Name" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="47"/>
+        <Label Name="lblName" 
+Content="ScriptName" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="83"/>
         <TextBox 
             Name="txtTestName"
             HorizontalAlignment="Left" 
             Height="23" 
-            Margin="67,27,0,0" 
+            Margin="103,27,0,0" 
             TextWrapping="Wrap" 
             Text="{Binding ScriptName}"
             VerticalAlignment="Top" 
             IsEnabled="{Binding Enabled}"
-            Width="311"/>
+            Width="358"/>
 
 
         <Label Content="Tags" HorizontalAlignment="Left" Margin="20,55,0,0" VerticalAlignment="Top" Width="47"/>
@@ -77,6 +78,7 @@
                     IsEnabled="{Binding Enabled}"
                     FontSize="8pt"
                     >
+
                 </avalonEdit:TextEditor>
             </Grid>
         </Expander>
@@ -122,6 +124,11 @@
             </Button.LayoutTransform>
         </Button>
         <Label Name="Status" HorizontalAlignment="Left" Margin="122,585,0,0" VerticalAlignment="Top" Content="{Binding Status}"/>
+        <Rectangle Name="rectSave" ToolTip="Save changes" MouseLeftButtonDown="rectSave_MouseLeftButtonDown"  HorizontalAlignment="Left" Height="26" Margin="478,24,0,0" Stroke="White" VerticalAlignment="Top" Width="32">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Images/Save.png" Stretch="Fill"/>
+            </Rectangle.Fill>
+        </Rectangle>
 
 
     </Grid>
