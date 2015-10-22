@@ -1,0 +1,135 @@
+﻿<Window x:Class="Chuck.Windows.TestDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Test Details - {0}" 
+        Height="665" 
+        Width="600"
+        ResizeMode="NoResize"
+        >
+    <Grid>
+        <Label Name="lblName" 
+Content="ScriptName" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="83"/>
+        <TextBox 
+            Name="txtScriptName"
+            HorizontalAlignment="Left" 
+            Height="23" 
+            Margin="103,27,0,0" 
+            TextWrapping="Wrap" 
+            Text="{Binding ScriptName}"
+            VerticalAlignment="Top" 
+            IsEnabled="{Binding Enabled}"
+            Width="358"/>
+
+
+        <Label Content="Tags" HorizontalAlignment="Left" Margin="20,55,0,0" VerticalAlignment="Top" Width="47"/>
+
+        <Button 
+            Name="btnAddTag"
+            IsEnabled="{Binding Enabled}"
+            Content="+" 
+            ToolTip="Add Tag"
+            HorizontalAlignment="Left" 
+            Margin="518,100,0,0" 
+            VerticalAlignment="Top" 
+            Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0.234"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.427"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.372"/>
+                    <GradientStop Color="#FF29B65C" Offset="1"/>
+                    <GradientStop Color="#FFDEDEDE" Offset="0.372"/>
+                    <GradientStop Color="#FF9FD6B3" Offset="0.669"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="7"/>
+                    <SkewTransform AngleX="8" CenterX="7"/>
+                    <RotateTransform CenterX="7"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.LayoutTransform>
+        </Button>
+
+
+
+        <Expander 
+            Name="ExpScript"
+            Header="Script" 
+            HorizontalAlignment="Left" 
+            Margin="20,129,0,0" 
+            VerticalAlignment="Top" 
+            Height="441" 
+            Width="540"
+            IsExpanded="True"
+            >
+            <Grid Background="#FFE5E5E5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="267*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <avalonEdit:TextEditor 
+                    Name="scriptEditor"
+                    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                    FontFamily="Consolas"
+                    Document="{Binding Script}"
+                    SyntaxHighlighting="C#"
+                    IsEnabled="{Binding Enabled}"
+                    FontSize="8pt"
+                    >
+
+                </avalonEdit:TextEditor>
+            </Grid>
+        </Expander>
+
+        <Button 
+            Name="btnRunTest"
+            Content="Run Test" 
+            Command="{Binding Path=RunTest}"
+            HorizontalAlignment="Left" 
+            Margin="20, 585, 0, 0" 
+            VerticalAlignment="Top" 
+            Width="83" 
+            Height="26" 
+            IsEnabled="{Binding Enabled}"
+            RenderTransformOrigin="0.723,0.615"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="68" Margin="67,61,0,0" VerticalAlignment="Top" Width="443"/>
+        <Button 
+        	Content="-" 
+        	ToolTip="Remove Tag"
+        	HorizontalAlignment="Left" 
+        	Margin="549,100,0,0" 
+            IsEnabled="{Binding Enabled}"
+        	VerticalAlignment="Top" 
+        	Width="22" Height="29" FontWeight="Bold" RenderTransformOrigin="7.722,0.517" BorderBrush="#FF1E0881" FontStyle="Italic" FontStretch="ExtraExpanded" Opacity="0.82" FontFamily="Arial Black" FontSize="20">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0.234"/>
+                    <GradientStop Color="#FFE6BB90" Offset="0.522"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.372"/>
+                    <GradientStop Color="#FFA82B06" Offset="1"/>
+                    <GradientStop Color="#FFDEDEDE" Offset="0.446"/>
+                    <GradientStop Color="#FFBD752D" Offset="0.669"/>
+                    <GradientStop Color="#FFD6280C" Offset="0.812"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="7"/>
+                    <SkewTransform AngleX="8" CenterX="7"/>
+                    <RotateTransform CenterX="7"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.LayoutTransform>
+        </Button>
+        <Label Name="Status" HorizontalAlignment="Left" Margin="122,585,0,0" VerticalAlignment="Top" Content="{Binding Status}"/>
+        <Rectangle Name="rectSave" ToolTip="Save changes" MouseLeftButtonDown="rectSave_MouseLeftButtonDown"  HorizontalAlignment="Left" Height="26" Margin="478,24,0,0" Stroke="White" VerticalAlignment="Top" Width="32">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Images/Save.png" Stretch="Fill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+    </Grid>
+</Window>
